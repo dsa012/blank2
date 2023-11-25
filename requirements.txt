@@ -1,1 +1,3 @@
-psutil
+llama_index
+llama-cpp-python
+transformers

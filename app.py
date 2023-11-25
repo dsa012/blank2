@@ -10,7 +10,7 @@ from llama_index.llms.llama_utils import (
     completion_to_prompt,
 )
 from llama_index.embeddings import HuggingFaceEmbedding
-
+import streamlit as st
 
 model_url = "https://huggingface.co/TheBloke/Llama-2-13B-chat-GGUF/resolve/main/llama-2-13b-chat.Q5_K_M.gguf"
 llm = LlamaCPP(
@@ -41,4 +41,4 @@ index = VectorStoreIndex.from_documents(
 )
 query_engine = index.as_query_engine()
 response = query_engine.query("What is Learn & Earn v2.0?")
-print(response)
+st.write(response)

@@ -26,7 +26,7 @@ llm = LlamaCPP(
     verbose=True,
 )
 
-embed_model = HuggingFaceEmbedding(model_name="jinaai/jina-embeddings-v2-small-en")
+embed_model = HuggingFaceEmbedding(model_name="jinaai/jina-embeddings-v2-base-en")
 service_context = ServiceContext.from_defaults(
     llm=llm,
     embed_model=embed_model,

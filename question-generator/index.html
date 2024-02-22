@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Code Test</title>
+  <script>
+    function validateInput(n) {
+      if (n.length < 1) {
+        throw "Incorrect format.";
+      }
+      if (n[0] === "-") {
+        if (!isNaN(n.slice(1))) {
+          return parseInt(n);
+        }
+      }
+      if (!isNaN(n)) {
+        return parseInt(n);
+      }
+      throw "Incorrect format.";
+    }
+
+    function generateQuestion(level) {
+      if (level === 1) {
+        let n1 = Math.floor(Math.random() * 8) + 2;
+        let n2 = Math.floor(Math.random() * 8) + 2;
+        let operators = ['+', '-', '*'];
+        let operator = operators[Math.floor(Math.random() * operators.length)];
+        let equation = `${n1} ${operator} ${n2}`;
+        let ans;
+        if (operator === '*') {
+          ans = n1 * n2;
+        } else if (operator === '-') {
+          ans = n1 - n2;
+        } else {
+          ans = n1 + n2;
+        }
+        return [equation, ans];
+      } else if (level === 2) {
+        let n = Math.floor(Math.random() * 19) + 11;
+        let product = n * n;
+        return [n, product];
+      }
+    }
+
+    let level = 0;
+    let lvl1_desc = "simple operations with numbers 2-9";
+    let lvl2_desc = "integral squares 11-29";
+    while (true) {
+      level = validateInput(prompt("Which level do you want? Enter a number:\n1 - simple operations with numbers 2-9\n2 - integral squares of 11-29"));
+      if (level === 1 || level === 2) {
+        break;
+      } else {
+        alert("Incorrect input.");
+      }
+    }
+
+    let score = 0;
+    for (let i = 0; i < 5; i++) {
+      let result = generateQuestion(level);
+      let question = result[0];
+      let ans = result[1];
+      alert(question);
+      while (true) {
+        try {
+          userAns = validateInput(prompt(""));
+          break;
+        } catch (err) {
+          alert(err);
+        }
+      }
+      if (userAns === ans) {
+        alert("Right!");
+        score++;
+      } else {
+        alert("Wrong!");
+      }
+    }
+    alert(`Your mark is ${score}/5.`);
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
